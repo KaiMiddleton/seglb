@@ -5,31 +5,48 @@ Super Epic Gallery - Light Box
 
 Goals:
 ------------------------------
-- ultra lightweight
-- independant of any JS library, like jQuery etc
-- simple to use for simple tasks
-- low level functions -> more power to let user do more complicated things,
-  while keeping the library itself light
+- Ultra lightweight
+- Independant of any JS library, like jQuery etc.
+- Simple to use for simple tasks
+- Low level functions -> more power to let user do more complicated things,
+  while keeping the script itself light
 
 Features:
 ------------------------------
 - lightweight light box
-- darken background
-- center LB content
+- darken background when displaying lightbox
 - close button
 - next/back button
-- closes when you click the background
-- goes to next picture, when you click the current picture
-- hides the niavigation when using a direct fill
+- clicking the background closes the lightbox
+- goes to next picture, when you click on the current picture
+- hides the navigation when using a direct fill
 
 Notes:
 ------------------------------
 ####List/Group of items/pictures:
 A list of files which you can navigate, meaning you click on one
 of the pictures and can then navigate back and fourth between those pictures.
-seglb calls these a list, and to make use of this you have to first pass
+seglb calls these a list. To make use of this you have to first pass
 a list of content items, usually a list of pictures to seglb, which you
 do as follows:
+
+    seglb.addList('plants',[
+      '<img src=\'http://kai.middleton.de/flower.jpg\' />',
+      '<img src=\'.../tree.jpg\' />',
+      '<img src=\'.../bushes.jpg\' />',
+      '<img src=\'.../gras.jpg\' />',
+    ]);
+    
+The list you saw there contains 4 items.
+If you would now want to display `tree.jpg`, which is our second item, you would call
+`seglb.load('plants',2,1);`  
+'plants' is the name you gave with addList  
+2 is the position of the item you want to fill the light box with  
+1 is you passing a true value, which tells seglb to show the light box  
+Another example
+`seglb.load('plants',3)` would pick 'plants' as the active list, and say
+you want to fill the lightbox with the content of item 3 on your list,
+in our case this would be the `bushes.jpg`
 
 The seglb object, it's functions and variables:
 ------------------------------
@@ -74,7 +91,7 @@ you could just read the code it's only like 16 lines of code but whatever:
   used by load to identify which list should be used.
   "items" - is the set of objects that is passed, meaning the actual list,
   a list could look like this:
-  `['<img src=\'http://kai.middleton.de/flower.jpg\' />', <img src=\'.../flower.jpg\' />]`
+  `['<img src=\'http://kai.middleton.de/flower.jpg\' />','<img src=\'.../flower.jpg\' />']`
   as you can see this list contains 2 items.
 * `pos` - contains the current position in the current list
 * `a` - contains the currently active list, is empty when no list is in use
@@ -91,12 +108,8 @@ Examples:
 **Fill** the lightbox with "hello" and display it:
 
     seglb.fill('hello',1);
-
-**Fill** the lightbox with "hello" and display it:
-
-    seglb.fill('hello',1);
   
-**Fill** the lightbox with the img "http://www.middleton.de/kai/flower.jpg" and display it:
+**Fill** the lightbox with the img "http://kai.middleton.de/flower.jpg" and display it:
 
     seglb.fill('<img src=\'http://kai.middleton.de/flower.jpg\' />',1);
     
