@@ -1,0 +1,129 @@
+<html><head>
+<style>  
+  /*Just some basic link styling so things look nicer*/
+  a{
+    color: #1BBBEA;
+    text-decoration:none;
+  }
+  a:hover{
+    color:#A9ECFF;
+  }
+  #seg-lb-bg{
+    display:none;
+    position:fixed;  top:0px;  left:0px;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.95);
+    text-align:center;
+  }
+  #seg-lb-w1{
+    display:table;
+    margin:0 auto;
+    min-height:100%;
+    height:100%;
+    text-align:left;
+  }
+  #seg-lb-w2{
+    display:table-cell;
+    vertical-align:middle;
+    zoom:1;
+  }
+  #seg-lb-box-w{
+    position:relative;
+  }
+  #seg-lb-box{
+    background:#eee;
+    border:3px solid #000;
+  }
+  #seg-lb,#seg-lb img,#seg-lb * {
+    max-width:800px;
+    max-height:500px;
+    display:block;
+  }
+  .seg-lb-bs{
+    position:absolute;
+    bottom:-2em;
+    left:0;
+    width:100%;
+    text-align:center;
+  }
+  .seg-lb-b{
+    display:inline-block;
+    background:#000;
+    height:2em;
+    line-height:2em;
+    width:2em;
+    text-align:center;
+    z-index:100;
+  }
+  .seg-lb-b:hover{
+    background:#222;
+  }
+  @media screen and (max-device-width: 806px),screen and (max-width: 806px){
+    #seg-lb,#seg-lb img,#seg-lb *{
+      max-height:none;
+      width:100%;
+    }
+  }
+</style>
+<script type="text/javascript">
+  function dgebi(id){return document.getElementById(id)}
+  function dgebid(id,d){dgebi(id).style.display=d}
+  var seglb = {
+    'show':function (i,n){dgebid('seg-lb-bg',(i)?'block':'none');if(n){seglb.clr()}},
+    'chide':function (i){if(seglb.bghide==1){seglb.show(0,i);}},
+    'clr':function (){seglb.fill(' ')},
+    'fill':function (f,i){slb=dgebi('seg-lb');
+      if(f){slb.innerHTML=f;seglb.l.a=[];seglb.navs(0)}
+      else{if(seglb.l.a.length > 0){slb.innerHTML=seglb.l.a[(seglb.pos-1)];seglb.navs(1)}}
+      if(i){seglb.show(1)}},
+    'nav':function (i){seglb.setpos((seglb.pos+i));seglb.fill()},
+    'navs':function (i){v=(i)?'inline-block':'none';dgebid('seg-lb-navNext',v);dgebid('seg-lb-navBack',v)},
+    'load':function (clist,pos,i){seglb.l.a=seglb.l[clist];pos=pos||1;seglb.setpos(pos);seglb.fill(0,i);},
+    'setpos':function (pos){seglb.pos=pos;if(pos<1){seglb.pos=seglb.l.a.length||1}if(pos>seglb.l.a.length){seglb.pos=1}},
+    'addList':function (name,items){seglb.l[name]=items;},
+    'pos':1,  'bghide':1,  'l':{'a':[]}
+  }
+</script>
+<script>
+  seglb.addList('flags',[
+        '<img src=\'http://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png\' />',
+        '<img src=\'http://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png\' />',
+      ]);
+</script>
+</head><body>
+  
+<div id="seg-lb-bg" onclick="seglb.chide(1)"><div id="seg-lb-w1"><div id="seg-lb-w2">
+  <div id="seg-lb-box-w" onmouseover="seglb.bghide=0" onmouseout="seglb.bghide=1"><div id="seg-lb-box" onclick="void(0)">
+    <div id="seg-lb" onclick="seglb.next()"><p>Content will be loaded in here</p></div>
+    <div class="seg-lb-bs">
+      <a class="seg-lb-b" href="javascript:void(0)" onclick="seglb.nav(-1)" id="seg-lb-navBack"><</a><a
+      class="seg-lb-b" href="javascript:void(0)" onclick="seglb.show(0,1)" id="seg-lb-navHide">x</a><a
+      class="seg-lb-b" href="javascript:void(0)" onclick="seglb.nav(1)" id="seg-lb-navNext">></a>
+    </div>
+  </div></div>
+</div></div></div>
+
+  
+  <p><a href="javascript:void(0)"
+    onclick="seglb.fill('<img src=\'http://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1200px-Flag_of_the_United_Kingdom.svg.png\' />',1);">
+    Fill the light box with the UK flag from Wiki and display it.
+    <br /><code>seglb.fill('...',1)</code> </a></p>
+  <p><a href="javascript:void(0)" onclick="seglb.load('flags',0,1);">
+    Load the list "flags", but don't spefify where to start. display the light box.
+    <br /><code>seglb.load('flags',0,1)</code></a></p>
+  <p><a href="javascript:void(0)" onclick="seglb.load('flags',1,1);">
+    Load the list "flags", start at item 1 in the list and display the light box.
+    <br /><code>seglb.load('flags',1,1)</code></a></p>
+  <p><a href="javascript:void(0)" onclick="seglb.load('flags',2,1);">
+    Load the list "flags", start at item 2 in the list and display the light box.
+    <br /><code>seglb.load('flags',2,1)</code></a></p>
+    
+  <h1> This content ain't really important </h1>
+  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+  <p>Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.</p>
+  <p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>
+  <p>Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum.</p>
+  <p>Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
+  <p>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus.Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+</body></html>
