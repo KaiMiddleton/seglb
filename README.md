@@ -24,7 +24,7 @@ Features:
 
 Notes:
 ------------------------------
-#### List/Group of items/pictures
+####List/Group of items/pictures:
 A list of files which you can navigate, meaning you click on one
 of the pictures and can then navigate back and fourth between those pictures.
 seglb calls these a list, and to make use of this you have to first pass
